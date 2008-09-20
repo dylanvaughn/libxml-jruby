@@ -1,10 +1,12 @@
 libxml-jruby
-    by FIXME (your name)
-    FIXME (url)
+    by Michael Guterl
+    http://diminishing.org
 
 == DESCRIPTION:
 
-FIXME (describe your package)
+LibXMLJRuby is a LibXMLRuby compatibility layer that mimcs the LibXMLRuby 
+interface as closely as possible.  LibXMLJRuby does not use libxml at all 
+it just delegates the methods to the appropriate underlying Java class.
 
 == FEATURES/PROBLEMS:
 
@@ -20,7 +22,7 @@ FIXME (describe your package)
 
 == INSTALL:
 
-* FIXME (sudo gem install, anything else)
+jruby -S gem install libxml-jruby
 
 == LICENSE:
 
