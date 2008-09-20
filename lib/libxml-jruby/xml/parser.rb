@@ -24,19 +24,19 @@ class LibXMLJRuby::XML::Parser
     def file(filename)
       p = new
       p.filename = filename
-      p.parse
+      p
     end
     
     def string(string)
       p = new
       p.string = string
-      p.parse
+      p
     end
     
     def io(io)
       p = new
       p.io = io
-      p.parse
+      p
     end
   end
   
@@ -73,13 +73,39 @@ class LibXMLJRuby::XML::Parser
   end
   
   private
+  def document_builder_factory
+    @dbf ||= DocumentBuilderFactory.new_instance
+  end
+  
+  def document_builder
+    document_builder_factory.new_document_builder
+  end
+  
+  def string_reader
+    StringReader.new(@string)
+  end
+  
+  def input_source
+    InputSource.new(string_reader)
+  end
+  
   def parse_string
     raise ParseError if @string.empty?
+    builder = document_builder
+    
+    begin
+      jdoc = builder.parse(input_source)
+    rescue NativeException
+      raise ParseError
+    end
+
+    doc = LibXMLJRuby::XML::Document.new
+    doc.java_obj = jdoc
+    doc
   end
   
   def parse_file
-    factory = DocumentBuilderFactory.new_instance
-    builder = factory.new_document_builder
+    builder = document_builder
     
     begin
       jdoc = builder.parse(@filename)
