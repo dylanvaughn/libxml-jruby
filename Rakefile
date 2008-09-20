@@ -10,8 +10,8 @@ require 'libxml-jruby'
 task :default => 'spec:run'
 
 PROJ.name = 'libxml-jruby'
-PROJ.authors = 'FIXME (who is writing this software)'
-PROJ.email = 'FIXME (your e-mail)'
+PROJ.authors = 'Michael Guterl'
+PROJ.email = 'mguterl@gmail.com'
 PROJ.url = 'FIXME (project homepage)'
 PROJ.rubyforge.name = 'libxml-jruby'
 
