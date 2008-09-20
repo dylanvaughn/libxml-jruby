@@ -35,7 +35,7 @@ module LibXMLJRuby
         end
         
         def evaluate_expression
-          compiled_expression.evaluate(document.java_obj)
+          compiled_expression.evaluate(@document.java_obj)
         end
       end
     end
