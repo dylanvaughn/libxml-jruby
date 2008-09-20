@@ -2,9 +2,9 @@
 
 # Equivalent to a header guard in C/C++
 # Used to prevent the class/module from being loaded more than once
-unless defined? LibxmlJruby
+unless defined? LibXMLJRuby
 
-module LibxmlJruby
+module LibXMLJRuby
 
   # :stopdoc:
   VERSION = '1.0.0'
@@ -47,9 +47,9 @@ module LibxmlJruby
     Dir.glob(search_me).sort.each {|rb| require rb}
   end
 
-end  # module LibxmlJruby
+end  # module LibXMLJRuby
 
-LibxmlJruby.require_all_libs_relative_to __FILE__
+LibXMLJRuby.require_all_libs_relative_to __FILE__
 
 end  # unless defined?
 
