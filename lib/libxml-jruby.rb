@@ -53,6 +53,8 @@ require 'java'
 require 'stringio'
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
+import javax.xml.xpath.XPath
+import javax.xml.xpath.XPathFactory
 import java.io.StringReader
 import 'org.xml.sax.InputSource'
 
