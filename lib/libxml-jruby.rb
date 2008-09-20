@@ -53,6 +53,8 @@ require 'java'
 require 'stringio'
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
+import java.io.StringReader
+import 'org.xml.sax.InputSource'
 
 LibXMLJRuby.require_all_libs_relative_to __FILE__
 ::LibXML = ::LibXMLJRuby
