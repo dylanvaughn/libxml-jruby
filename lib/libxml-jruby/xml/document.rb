@@ -14,7 +14,11 @@ module LibXMLJRuby
       end
       
       def find(expr, nslist = nil)
-        XML::XPath::Object.new(expr, self)
+        XML::XPath::Object.new(expr, self, nslist)
+      end
+      
+      def find_first(expr, nslist = nil)
+        XML::XPath::Object.new(expr, self, nslist).first
       end
     end    
   end
