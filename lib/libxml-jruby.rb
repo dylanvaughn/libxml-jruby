@@ -55,6 +55,8 @@ import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPath
 import javax.xml.xpath.XPathFactory
+import javax.xml.xpath.XPathConstants
+import javax.xml.namespace.NamespaceContext
 import java.io.StringReader
 import 'org.xml.sax.InputSource'
 
