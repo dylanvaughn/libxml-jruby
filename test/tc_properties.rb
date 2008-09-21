@@ -1,5 +1,4 @@
-require "xml"
-require 'test/unit'
+require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
 
 # Properties is deprecated - use attributes instead.
 # Tests for backwards compatibility

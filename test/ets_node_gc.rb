@@ -1,4 +1,4 @@
-require 'xml'
+require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
 
 # test of bug 13310, clears MEM2
 

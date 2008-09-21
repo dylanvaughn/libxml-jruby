@@ -1,5 +1,4 @@
-require "xml"
-require 'test/unit'
+require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
 
 # see mailing list archive
 # [libxml-devel] Segmentation fault when add the cloned/copied node

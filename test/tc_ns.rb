@@ -1,5 +1,4 @@
-require "xml"
-require 'test/unit'
+require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
 
 class TestNS < Test::Unit::TestCase
   def test_ns

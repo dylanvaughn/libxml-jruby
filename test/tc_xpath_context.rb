@@ -1,6 +1,5 @@
-require 'xml'
+require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
 require "tempfile"
-require "test/unit"
 
 class TestXPathContext < Test::Unit::TestCase
   SOAP_PREFIX = 'soap'
