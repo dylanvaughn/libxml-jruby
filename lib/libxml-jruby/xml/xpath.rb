@@ -4,13 +4,15 @@ module LibXMLJRuby
       NODESET = nil
       
       class Object
+        include Enumerable
+        
         def initialize(expr, document, nslist = nil)
           @expr, @document = expr, document
           @nslist = nslist          
         end
         
         def each(&block)
-          set.each(block)
+          set.each(&block)
         end
         
         def length
@@ -26,7 +28,11 @@ module LibXMLJRuby
         end
         
         def set
-          @set ||= XML::Node::Set.new(evaluate_expression)
+          @set ||= XML::Node::Set.from_java(evaluate_expression)
+        end
+        
+        def [](index)
+          set[index]
         end
         
         private
@@ -39,16 +45,36 @@ module LibXMLJRuby
         end
         
         def namespace_context
-          # FiXME (I need to figure out how to implement this from a string)
+          resolver = PrefixResolverDefault.new(document.owner_document)
+          ctx = NamespaceContext.new
+          ctx.instance_variable_set(:"@resolver", resolver)
+          def ctx.getNamespaceURI(prefix)
+            @resolver.getNamespaceForPrefix(prefix)
+          end
+          
+          def ctx.getPrefixes(val)
+            nil
+          end
+          
+          def ctx.getPrefix(uri)
+            nil
+          end
+          
+          ctx
         end
         
         def compiled_expression
           # xpath.namespace_context = namespace_context unless @nslist.empty?
-          xpath.compile(@expr)
+          @compiled_expression ||= xpath.compile(@expr)
         end
         
         def evaluate_expression
-          compiled_expression.evaluate(@document.java_obj, XPathConstants::NODESET)
+          xpath.namespace_context = namespace_context
+          @evaluated_expression ||= compiled_expression.evaluate(document, XPathConstants::NODESET)
+        end
+        
+        def document
+          @document.respond_to?(:java_obj) ? @document.java_obj : @document
         end
       end
     end

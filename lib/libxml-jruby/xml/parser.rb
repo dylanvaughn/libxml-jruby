@@ -49,6 +49,7 @@ class LibXMLJRuby::XML::Parser
   
   def string=(string = nil)
     raise TypeError if string.nil?
+    @parsed = false
     @source_type = String
     @string = string
   end
@@ -60,8 +61,8 @@ class LibXMLJRuby::XML::Parser
 
   def io=(io)
     raise TypeError if StringIO === io
-    @source_type = IO
     @io = io
+    self.string = @io.read
   end
   
   def parse
@@ -72,12 +73,12 @@ class LibXMLJRuby::XML::Parser
     doc
   end
   
-  private
   def document_builder_factory
     @dbf ||= DocumentBuilderFactory.new_instance
   end
   
   def document_builder
+    # document_builder_factory.namespace_aware = true
     document_builder_factory.new_document_builder
   end
   
@@ -99,9 +100,7 @@ class LibXMLJRuby::XML::Parser
       raise ParseError
     end
 
-    doc = LibXMLJRuby::XML::Document.new
-    doc.java_obj = jdoc
-    doc
+    XML::Document.from_java(jdoc)
   end
   
   def parse_file
@@ -113,12 +112,10 @@ class LibXMLJRuby::XML::Parser
       raise ParseError
     end
     
-    doc = LibXMLJRuby::XML::Document.new
-    doc.java_obj = jdoc
-    doc
+    XML::Document.from_java(jdoc)
   end
   
   def parse_io
-    
+    parse_string
   end
 end
