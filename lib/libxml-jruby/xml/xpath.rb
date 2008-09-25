@@ -64,12 +64,11 @@ module LibXMLJRuby
         end
         
         def compiled_expression
-          # xpath.namespace_context = namespace_context unless @nslist.empty?
+          xpath.namespace_context = namespace_context
           @compiled_expression ||= xpath.compile(@expr)
         end
         
-        def evaluate_expression
-          xpath.namespace_context = namespace_context
+        def evaluate_expression          # xpath.add_namespace("city", "http://www.opengis.net/examples")
           @evaluated_expression ||= compiled_expression.evaluate(document, XPathConstants::NODESET)
         end
         
