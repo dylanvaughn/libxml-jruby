@@ -12,7 +12,7 @@ module LibXMLJRuby
       
       attr_accessor :java_obj
       
-      def initialize(node, name, value)
+      def initialize(node, name, value, ns = nil)
         self.java_obj = node.java_obj
         java_obj.set_attribute(name, value)
       end
