@@ -1,6 +1,19 @@
 module LibXMLJRuby
   module XML
     class Node
+      ATTRIBUTE_NODE = org.w3c.dom.Node.ATTRIBUTE_NODE
+      CDATA_SECTION_NODE = org.w3c.dom.Node.CDATA_SECTION_NODE
+      COMMENT_NODE = org.w3c.dom.Node.COMMENT_NODE
+      DOCUMENT_FRAG_NODE = org.w3c.dom.Node.DOCUMENT_FRAGMENT_NODE
+      DOCUMENT_NODE = org.w3c.dom.Node.DOCUMENT_NODE
+      DOCUMENT_TYPE_NODE = org.w3c.dom.Node.DOCUMENT_TYPE_NODE
+      ELEMENT_NODE = org.w3c.dom.Node.ELEMENT_NODE      
+      ENTITY_NODE = org.w3c.dom.Node.ENTITY_NODE
+      ENTITY_REFERENCE_NODE = org.w3c.dom.Node.ENTITY_REFERENCE_NODE
+      NOTATION_NODE = org.w3c.dom.Node.NOTATION_NODE
+      PROCESSING_INSTRUCTION_NODE = org.w3c.dom.Node.PROCESSING_INSTRUCTION_NODE
+      TEXT_NODE = org.w3c.dom.Node.TEXT_NODE
+      
       class << self
         def from_java(java_obj)
           return nil if java_obj.nil?
@@ -58,7 +71,7 @@ module LibXMLJRuby
       def each_element
         if block_given?
           each do |node|
-            yield(node) if node.node_type == org.w3c.dom.Node.ELEMENT_NODE
+            yield(node) if node.node_type == ELEMENT_NODE
           end
         else
           select do |node|
@@ -78,6 +91,58 @@ module LibXMLJRuby
       
       def node_type
         java_obj.node_type
+      end
+      
+      def node_type_name
+        case node_type
+          # Most common choices first
+          when ATTRIBUTE_NODE
+            'attribute'
+          when DOCUMENT_NODE
+            'document_xml'
+          when ELEMENT_NODE
+            'element'
+          when TEXT_NODE
+            'text'
+          
+          # Now the rest  
+          when ATTRIBUTE_DECL
+            'attribute_decl'
+          when CDATA_SECTION_NODE
+            'cdata'
+          when COMMENT_NODE
+            'comment'
+          when DOCB_DOCUMENT_NODE
+            'document_docbook'
+          when DOCUMENT_FRAG_NODE
+            'fragment'
+          when DOCUMENT_TYPE_NODE
+            'doctype'
+          when DTD_NODE
+            'dtd'
+          when ELEMENT_DECL
+            'elem_decl'
+          when ENTITY_DECL
+            'entity_decl'
+          when ENTITY_NODE
+            'entity'
+          when ENTITY_REF_NODE
+            'entity_ref'
+          when HTML_DOCUMENT_NODE
+            'document_html'
+          when NAMESPACE_DECL
+            'namespace'
+          when NOTATION_NODE
+            'notation'
+          when PI_NODE
+            'pi'
+          when XINCLUDE_START
+            'xinclude_start'
+          when XINCLUDE_END
+            'xinclude_end'
+          else
+            raise(UnknownType, "Unknown node type: %n", node.node_type);
+        end          
       end
       
       def first
