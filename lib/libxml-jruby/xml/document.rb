@@ -29,7 +29,7 @@ module LibXMLJRuby
       end
       
       def find_first(expr, nslist = nil)
-        find(expr, self, nslist).first
+        find(expr, nslist).first
       end
       
       def child?
