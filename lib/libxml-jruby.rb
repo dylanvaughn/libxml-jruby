@@ -66,6 +66,9 @@ import javax.xml.validation.Schema
 import javax.xml.validation.SchemaFactory
 import java.io.ByteArrayInputStream
 import javax.xml.transform.stream.StreamSource
+import javax.xml.transform.stream.StreamResult
+import javax.xml.transform.TransformerFactory
+import javax.xml.transform.dom.DOMSource
 
 LibXMLJRuby.require_all_libs_relative_to __FILE__
 ::LibXML = ::LibXMLJRuby
