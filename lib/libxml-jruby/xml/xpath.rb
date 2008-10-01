@@ -45,7 +45,17 @@ module LibXMLJRuby
         end
         
         def resolver
-          PrefixResolverDefault.new(document.getDocumentElement)
+          PrefixResolverDefault.new(doc_element)
+        end
+        
+        def doc_element
+          if document.respond_to?(:getDocumentElement)
+            document.getDocumentElement
+          elsif document.respond_to?(:getOwnerDocument)
+            document.getOwnerDocument
+          else
+            nil
+          end
         end
         
         def namespace_context          
