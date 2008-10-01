@@ -78,7 +78,7 @@ class LibXMLJRuby::XML::Parser
   end
   
   def document_builder
-    # document_builder_factory.namespace_aware = true
+    document_builder_factory.namespace_aware = true
     document_builder_factory.new_document_builder
   end
   
