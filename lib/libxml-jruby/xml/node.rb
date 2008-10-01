@@ -39,7 +39,8 @@ module LibXMLJRuby
       end
       
       def child_add(node)
-        java_obj.appendChild(node.java_obj)
+        java_obj.getOwnerDocument.adoptNode(node.java_obj)
+        java_obj.appendChild(node.java_obj) # should this be importNode?
       end
       
       def copy(deep = false)
