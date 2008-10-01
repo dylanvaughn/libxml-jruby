@@ -41,39 +41,46 @@ module LibXMLJRuby
         end
         
         def xpath
-          @xpath = xpath_factory.newXPath
+          @xpath ||= xpath_factory.newXPath
         end
         
-        def namespace_context
-          resolver = PrefixResolverDefault.new(document.owner_document)
-          ctx = NamespaceContext.new
-          ctx.instance_variable_set(:"@resolver", resolver)
-          def ctx.getNamespaceURI(prefix)
-            @resolver.getNamespaceForPrefix(prefix)
-          end
-          
-          def ctx.getPrefixes(val)
-            nil
-          end
-          
-          def ctx.getPrefix(uri)
-            nil
-          end
-          
-          ctx
+        def resolver
+          PrefixResolverDefault.new(document.getDocumentElement)
         end
         
-        def compiled_expression
-          xpath.namespace_context = namespace_context
-          @compiled_expression ||= xpath.compile(@expr)
+        def namespace_context          
+          CustomNamespaceContext.new(resolver)
         end
         
-        def evaluate_expression          # xpath.add_namespace("city", "http://www.opengis.net/examples")
-          @evaluated_expression ||= compiled_expression.evaluate(document, XPathConstants::NODESET)
+        def evaluate_expression
+          xpath.setNamespaceContext(namespace_context)
+          xpath.evaluate(@expr, document, XPathConstants::NODESET)
         end
         
         def document
           @document.respond_to?(:java_obj) ? @document.java_obj : @document
+        end
+        
+        class CustomNamespaceContext
+          include NamespaceContext
+          
+          attr_reader :resolver
+
+          def initialize(resolver)
+            @resolver = resolver
+          end
+
+        	def getNamespaceURI(prefix)
+        		resolver.getNamespaceForPrefix(prefix)
+        	end
+
+        	def getPrefixes(val)
+        		nil
+        	end
+
+        	def getPrefix(uri)
+            nil
+        	end
         end
       end
     end
