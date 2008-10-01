@@ -58,14 +58,10 @@ import javax.xml.xpath.XPathFactory
 import javax.xml.xpath.XPathConstants
 import javax.xml.namespace.NamespaceContext
 import java.io.StringReader
-import 'org.xml.sax.InputSource'
-import 'org.apache.xml.utils.PrefixResolver'
-import 'org.apache.xml.utils.PrefixResolverDefault'
 import java.io.StringWriter
-import javax.xml.transform.Transformer
-import javax.xml.transform.TransformerFactory
-import javax.xml.transform.dom.DOMSource
-import javax.xml.transform.stream.StreamResult
+import 'com.sun.org.apache.xml.internal.utils.PrefixResolver'
+import 'com.sun.org.apache.xml.internal.utils.PrefixResolverDefault'
+import 'org.xml.sax.InputSource'
 
 LibXMLJRuby.require_all_libs_relative_to __FILE__
 ::LibXML = ::LibXMLJRuby
