@@ -15,8 +15,8 @@ module LibXMLJRuby
       attr_accessor :java_obj # org.w3c.dom.Element(Node?)
       
       def initialize(name, content = nil)
-        self.java_obj = Object.new
-        self.name = name
+        jdoc = DocumentBuilderFactory.new_instance.new_document_builder.new_document
+        self.java_obj = jdoc.createElement(name)
         self.content = content
       end
 
@@ -195,6 +195,10 @@ module LibXMLJRuby
         
         def [](index)
           @node_cache[index] ||= XML::Node.from_java(java_obj.item(index))
+        end
+        
+        def first
+          self[0]
         end
         
         def each
