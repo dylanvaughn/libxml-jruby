@@ -62,6 +62,10 @@ import java.io.StringWriter
 import 'com.sun.org.apache.xml.internal.utils.PrefixResolver'
 import 'com.sun.org.apache.xml.internal.utils.PrefixResolverDefault'
 import 'org.xml.sax.InputSource'
+import javax.xml.validation.Schema
+import javax.xml.validation.SchemaFactory
+import java.io.ByteArrayInputStream
+import javax.xml.transform.stream.StreamSource
 
 LibXMLJRuby.require_all_libs_relative_to __FILE__
 ::LibXML = ::LibXMLJRuby
