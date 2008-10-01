@@ -46,6 +46,11 @@ module LibXMLJRuby
         java_obj.node_name = @name if @name
       end
 
+      def base
+        b = java_obj.getAttributeNS('xml', 'base')
+        b.empty? ? nil : b
+      end
+
       def content=(content)
         @content = content
         java_obj.node_value = @value if @value
