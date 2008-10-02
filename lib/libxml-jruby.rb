@@ -59,9 +59,6 @@ import javax.xml.xpath.XPathConstants
 import javax.xml.namespace.NamespaceContext
 import java.io.StringReader
 import java.io.StringWriter
-import 'com.sun.org.apache.xml.internal.utils.PrefixResolver'
-import 'com.sun.org.apache.xml.internal.utils.PrefixResolverDefault'
-import 'org.xml.sax.InputSource'
 import javax.xml.validation.Schema
 import javax.xml.validation.SchemaFactory
 import java.io.ByteArrayInputStream
@@ -69,6 +66,13 @@ import javax.xml.transform.stream.StreamSource
 import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
+
+# these use include_class to avoid conflicts with Rake's top-level
+# import method, the issue doesn't seem to occur when not using a
+# string.
+include_class 'com.sun.org.apache.xml.internal.utils.PrefixResolver'
+include_class 'com.sun.org.apache.xml.internal.utils.PrefixResolverDefault'
+include_class 'org.xml.sax.InputSource'
 
 LibXMLJRuby.require_all_libs_relative_to __FILE__
 ::LibXML = ::LibXMLJRuby
