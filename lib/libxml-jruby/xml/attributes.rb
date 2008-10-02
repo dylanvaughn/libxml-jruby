@@ -31,11 +31,7 @@ module LibXMLJRuby
       
       def [](name)
         attr = get_attribute(name)
-        if attr
-          attr.value
-        else
-          nil
-        end
+        attr ? attr.value : nil
       end
       
       def []=(name, value)
@@ -47,17 +43,24 @@ module LibXMLJRuby
         end
       end
       
+      def get_attribute_ns(name, ns)
+        attr = java_obj.get_attribute_node_ns(name, ns)
+        attr ? nil : XML::Attr.from_java(attr)
+      end
+      
       def get_attribute(name)
         if @attribute_cache[name.to_s]
           @attribute_cache[name.to_s]
-        else
-          attr = java_obj.attributes.get_named_item(name.to_s) if java_obj && java_obj.attributes
+        elsif java_obj && java_obj.attributes
+          attr = java_obj.attributes.get_named_item(name.to_s)
           if attr
             @attribute_cache[name.to_s] = XML::Attr.from_java(attr)
             @attribute_cache[name.to_s]
           else
             nil
           end
+        else
+          nil
         end
       end
     end
