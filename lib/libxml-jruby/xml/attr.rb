@@ -1,6 +1,6 @@
 module LibXMLJRuby
   module XML
-    class Attr
+    class Attr < Node
       class << self
         def from_java(java_obj)
           return nil unless java_obj
@@ -30,7 +30,7 @@ module LibXMLJRuby
       end
       
       def name
-        java_obj.name
+        java_obj.respond_to?(:name) ? java_obj.name : java_obj.node_name
       end
       
       def value
