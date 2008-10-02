@@ -1,4 +1,5 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
+require 'xml'
+require 'test/unit'
 
 class TestTranversal < Test::Unit::TestCase
   ROOT_NODES_LENGTH = 25

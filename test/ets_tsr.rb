@@ -1,4 +1,4 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
+require 'xml'
 
 10_000.times {|n|
 j=XML::Node.new2(nil,"happy#{n}")

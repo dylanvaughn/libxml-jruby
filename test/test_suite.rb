@@ -1,6 +1,3 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
-$:.unshift(File.expand_path(File.join(File.dirname(File.basename(__FILE__)), 'test')))
-
 require 'tc_well_formed'
 require 'tc_attributes'
 require 'tc_document'
@@ -22,7 +19,7 @@ require 'tc_parser'
 require 'tc_parser_context'
 require 'tc_reader'
 require 'tc_relaxng'
-# require 'tc_sax_parser' TODO (uncomment this once working on implementation)
+require 'tc_sax_parser'
 require 'tc_schema'
 require 'tc_traversal'
 require 'tc_xinclude'

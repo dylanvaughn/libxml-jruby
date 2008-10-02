@@ -1,4 +1,5 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
+require "xml"
+require 'test/unit'
 
 class TC_XML_Node_Set < Test::Unit::TestCase
   def setup()

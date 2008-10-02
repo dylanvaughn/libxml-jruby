@@ -1,4 +1,5 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
+require 'xml/libxml'
+require 'test/unit'
 
 class TestDeprecatedRequire < Test::Unit::TestCase
   def test_basic

@@ -1,4 +1,5 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
+require "libxml"
+require 'test/unit'
 
 class TestWellFormed < Test::Unit::TestCase
   def test_xml_node_doc_get()

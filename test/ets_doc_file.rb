@@ -1,4 +1,4 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
+require 'xml'
 
 # This is related to bug 8337, complaint is on amd64/fbsd
 # unknown if it happens on other amd64/os combos

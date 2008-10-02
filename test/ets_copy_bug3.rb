@@ -1,4 +1,4 @@
-require File.dirname(File.basename(__FILE__)) + '/test/test_helper'
+require 'xml'
 
 str = <<-STR
   <html>
