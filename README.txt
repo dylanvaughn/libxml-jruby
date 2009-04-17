@@ -22,7 +22,7 @@ it just delegates the methods to the appropriate underlying Java class.
 
 == INSTALL:
 
-jruby -S gem install libxml-jruby
+jruby -S gem install dylanvaughn-libxml-jruby --source=http://gems.github.com
 
 == LICENSE:
 
